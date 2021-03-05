@@ -1,5 +1,4 @@
-    <tbody>
-            <tr><td><h2 class="section-title">Upload Documents</h2></td></tr>
+<tbody>
         <?php 
             $level="";
             foreach($doc as $keys => $values){ ?>

@@ -2114,7 +2114,12 @@ max-height: 36px;
 }
 .supp_type
 {
-  padding: 4%;
+  padding-bottom: 4%;
+}
+
+.supp_section{
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .table > tbody > tr > td{
