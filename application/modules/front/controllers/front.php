@@ -399,6 +399,7 @@
 			$outlet_id=DEFAULT_OUTLET;
 			$supplier_id=$this->session->userdata['supplier']['supplier_id'];
 			$total=$this->input->post('total');
+			$general_ingredient_doc_type = "";
 			if(isset($supplier_id) && !empty($supplier_id)){
 				for ($i=0; $i <=$total; $i++) {
 					$attribute_data=$arr_attribute=$where_attr=array();
@@ -447,6 +448,7 @@
 
 										foreach($result as $keys => $values)
 										{
+											$general_ingredient_doc_type = $values['doc_type'];
 											if($values['doc_type']=="location specific" && $values['id']==$this->input->post('doc_'.$i) ){
 												$ingredient_locations = Modules::run('ingredients/_get_data_from_db_table',array("location"=>$exist_loc->location,"ingredient_id"=>$ing['ingredient_id'],"supplier_id"=>$supplier_id),'ingredient_location',"","","location,id as loc_id,ingredient_id","")->result_array();
 												if(!empty($ingredient_locations))
@@ -472,6 +474,8 @@
 			///////////////////notification_code_end////////////////////////////////////
 			$this->session->set_flashdata('status', 'success');
 			$this->session->set_flashdata('message', 'Documents Saved');
+			if($general_ingredient_doc_type =="location specific")
+				redirect(BASE_URL . 'index#supplier_documents');
     	    redirect(BASE_URL . 'index#ingredient_location');
 		}
 
